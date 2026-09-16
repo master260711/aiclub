@@ -1,20 +1,6 @@
 import Aurora from './components/Aurora/Aurora';
 import DepthText from './components/DepthText/DepthText';
-
-const GithubIcon = () => (
-  <svg aria-hidden="true" viewBox="0 0 24 24">
-    <path
-      fill="currentColor"
-      d="M12 .7A11.3 11.3 0 0 0 8.4 22.8c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.4-4-1.4-.5-1.4-1.3-1.8-1.3-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.8-1.6-2.6-.3-5.4-1.3-5.4-5.6 0-1.2.4-2.2 1.2-3-.1-.3-.5-1.5.1-3 0 0 1-.3 3.1 1.2a10.6 10.6 0 0 1 5.7 0c2.2-1.5 3.1-1.2 3.1-1.2.6 1.5.2 2.7.1 3 .8.8 1.2 1.8 1.2 3 0 4.3-2.8 5.3-5.4 5.6.4.4.8 1.1.8 2.2v3.3c0 .4.2.7.8.6A11.3 11.3 0 0 0 12 .7Z"
-    />
-  </svg>
-);
-
-const ArrowUpRight = () => (
-  <svg aria-hidden="true" viewBox="0 0 20 20">
-    <path d="M5.5 14.5 14.5 5.5M7 5.5h7.5V13" />
-  </svg>
-);
+import MembersPage from './MembersPage';
 
 const ArrowDown = () => (
   <svg aria-hidden="true" viewBox="0 0 20 20">
@@ -28,7 +14,7 @@ const principles = [
   { number: '03', title: '开放共创', text: '让好想法找到同行者' },
 ];
 
-export default function App() {
+function HomePage() {
   return (
     <main className="site-shell">
       <section className="hero" aria-labelledby="hero-title">
@@ -51,14 +37,8 @@ export default function App() {
             <span className="brand__name">AI 创想俱乐部</span>
           </a>
 
-          <a
-            className="nav__github"
-            href="https://github.com/master260711/aiclub"
-            target="_blank"
-            rel="noreferrer"
-            aria-label="在 GitHub 查看 AI 创想俱乐部"
-          >
-            <GithubIcon />
+          <a className="nav__members" href="/members">
+            成员
           </a>
         </header>
 
@@ -100,15 +80,9 @@ export default function App() {
           </p>
 
           <div className="hero__actions reveal reveal--four">
-            <a
-              className="button button--primary"
-              href="https://github.com/master260711/aiclub/issues/new"
-              target="_blank"
-              rel="noreferrer"
-            >
+            <button className="button button--primary" type="button">
               提交一个创想
-              <ArrowUpRight />
-            </a>
+            </button>
             <a className="button button--secondary" href="#club-method">
               看看我们怎么做
               <ArrowDown />
@@ -133,4 +107,8 @@ export default function App() {
       </section>
     </main>
   );
+}
+
+export default function App() {
+  return window.location.pathname.replace(/\/$/, '') === '/members' ? <MembersPage /> : <HomePage />;
 }
